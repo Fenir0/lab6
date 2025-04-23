@@ -5,7 +5,10 @@
 #include<cmath>
 
 square_matrix::square_matrix(): matrix() {}
-square_matrix::square_matrix(int n):matrix(n,n){}
+square_matrix::square_matrix(int n):matrix(n,n){
+}
+
+
 
 square_matrix& square_matrix::operator*(square_matrix& res){ 
     if(res.m != n){
@@ -57,19 +60,22 @@ bool square_matrix::is_symmetrical(){
     }
     return true;
 }
-void square_matrix::power(int n){
+square_matrix square_matrix::power(int n){
     if(n < 1) throw std::runtime_error("Wrong power\n");
     square_matrix res = *this;
     if(n == 1){
         for(int i = 0; i < res.m; i++){
             for(int j = 0; j < res.n; j++){
-                res[i][j] = (i==j?1:0);
+                res.mt[i][j] = (i==j?1:0);
             }
         }
+        return res;
     }
     for(int i = 1; i < n; i++){
-        *this = (*this) * res;
+        res = (*this) * res;
     }
+    return res;
 }
+
 
 #endif

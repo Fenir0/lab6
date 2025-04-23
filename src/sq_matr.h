@@ -6,6 +6,6 @@ struct square_matrix: public matrix{
 
     int determinant();
     bool is_symmetrical();
-    void power(int n);
+    square_matrix power(int n);
     square_matrix& operator* (square_matrix& res);
 };

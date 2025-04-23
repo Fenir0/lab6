@@ -11,14 +11,14 @@ matrix::matrix(){
             mt[i][0] = 0, mt[i][1] = 0;
         }
     }
-matrix::matrix(int c_n, int c_m){
+matrix::matrix(int c_m, int c_n){
     id = id_count;
     id_count++;
-    mt = new int*[c_n];
+    mt = new int*[c_m];
     n = c_n, m = c_m;
-    for(int i = 0; i < c_n; i++){
-        mt[i] = new int[c_m];
-        for(int j = 0; j < c_m; j++){
+    for(int i = 0; i < c_m; i++){
+        mt[i] = new int[c_n];
+        for(int j = 0; j < c_n; j++){
             mt[i][j] = std::rand()%20;
         }
     }    
@@ -79,9 +79,9 @@ matrix matrix::operator*(matrix& res){
     matrix tmp(m, res.n);
     int s;
     for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
+        for(int j = 0; j < res.n; j++){
             s = 0;
-            for(int k = 0; k < m; k++){
+            for(int k = 0; k < n; k++){
                 s += mt[i][k]*res.mt[k][j];
             }
             tmp.mt[i][j] = s;
@@ -118,8 +118,8 @@ bool matrix::operate(char operation, matrix* dummy, matrix* res, int temp){
     if(res && (res->m != m || res->n != n)){
         throw std::runtime_error("\nError: different dimensions\n");
     }
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
             switch (operation){
                 case '-':
                     dummy->mt[i][j] = mt[i][j] - res->mt[i][j];
@@ -156,8 +156,8 @@ int matrix::max(){
 
 std::ostream& operator<<(std::ostream& s, const matrix& res){
    // std::cout << res.mt << ' ' << res.id << '\n';
-    for(int i = 0; i < res.n; i++){
-        for(int j = 0; j < res.m; j++){
+    for(int i = 0; i < res.m; i++){
+        for(int j = 0; j < res.n; j++){
             s << std::setw(4) << (res.mt[i][j]) << " ";
         }
         s << "\n";
@@ -165,8 +165,8 @@ std::ostream& operator<<(std::ostream& s, const matrix& res){
     return s;
 }
 std::istream& operator>>(std::istream& s, matrix& res){
-    for(int i = 0; i < res.n; i++){
-        for(int j = 0; j < res.m; j++){
+    for(int i = 0; i < res.m; i++){
+        for(int j = 0; j < res.n; j++){
             s >> (res.mt[i][j]);
         }
     }
