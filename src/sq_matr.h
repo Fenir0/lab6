@@ -1,3 +1,6 @@
+#ifndef SQ_MATRIX
+#define SQ_MATRIX
+
 #include "matr.h"
 
 struct square_matrix: public matrix{
@@ -9,3 +12,5 @@ struct square_matrix: public matrix{
     square_matrix power(int n);
     square_matrix& operator* (square_matrix& res);
 };
+
+#endif
