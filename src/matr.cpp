@@ -94,6 +94,9 @@ matrix matrix::operator*(matrix& res){
 matrix matrix::operator=(const matrix& res){
     m = res.m;
     n = res.n;
+    for(int i = 0; i < m; i++){
+        delete[] mt[i];
+    }
     delete[] mt;
     mt = new int*[res.m];
     for(int i = 0; i < res.m; i++){
