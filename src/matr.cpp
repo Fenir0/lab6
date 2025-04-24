@@ -92,8 +92,7 @@ matrix matrix::operator*(matrix& res){
             tmp.mt[i][j] = s;
         }
     }
-    *this = tmp;
-    return *this;  
+    return tmp;  
 }
 
 matrix matrix::operator=(const matrix& res){
