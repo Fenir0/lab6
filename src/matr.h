@@ -3,7 +3,8 @@
 
 #include<iostream>
 #include<cstdlib>
-struct matrix{
+class matrix{
+public:
     int** mt;
     int n, m, id;
     static int id_count;
