@@ -1,6 +1,3 @@
-#ifndef SQ_MATRIX
-#define SQ_MATRIX
-
 #include "sq_matr.h"
 #include<cmath>
 
@@ -76,6 +73,3 @@ square_matrix square_matrix::power(int n){
     }
     return res;
 }
-
-
-#endif
