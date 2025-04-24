@@ -1,17 +1,22 @@
 #include "matr.h"
 #include <iomanip>
+#include <cstdlib>
 int matrix::id_count = 0;
+
 matrix::matrix(){
         id = id_count;
         id_count++;
         mt = new int*[2];
         n = 2, m = 2;
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < m; i++){
             mt[i] = new int[2];
-            mt[i][0] = 0, mt[i][1] = 0;
+            for(int j = 0; j < n; j++){
+                mt[i][j] = 0;
+            }
         }
     }
 matrix::matrix(int c_m, int c_n){
+    srand(matrix::id_count);
     id = id_count;
     id_count++;
     mt = new int*[c_m];
@@ -148,8 +153,9 @@ bool matrix::operate(char operation, matrix* dummy, matrix* res, int temp){
 }
  
 int matrix::max(){
-    int s = -(int)10e8;
+    int s;
     for(int i = 0; i < m; i++){
+        if(i == 0) s = mt[i][0];
         for(int j = 0; j < n; j++){
             s = std::max(s, mt[i][j]);
         }
@@ -175,5 +181,3 @@ std::istream& operator>>(std::istream& s, matrix& res){
     }
     return s;
 }
-
-

@@ -4,7 +4,7 @@
 #include<iostream>
 #include<cstdlib>
 class matrix{
-public:
+    public:
     int** mt;
     int n, m, id;
     static int id_count;

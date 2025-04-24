@@ -1,11 +1,9 @@
+
 #include "sq_matr.h"
 #include<cmath>
 
 square_matrix::square_matrix(): matrix() {}
-square_matrix::square_matrix(int n):matrix(n,n){
-}
-
-
+square_matrix::square_matrix(int n):matrix(n,n){}
 
 square_matrix& square_matrix::operator*(square_matrix& res){ 
     if(res.m != n){
@@ -48,6 +46,7 @@ int square_matrix::determinant(){
         return mt[0][0]*mt[1][1]-mt[0][1]*mt[1][0];
     }
 }
+
 bool square_matrix::is_symmetrical(){
     for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
@@ -57,7 +56,8 @@ bool square_matrix::is_symmetrical(){
     }
     return true;
 }
-square_matrix square_matrix::power(int n){
+
+void square_matrix::power(int n){
     if(n < 1) throw std::runtime_error("Wrong power\n");
     square_matrix res = *this;
     if(n == 1){
@@ -66,10 +66,8 @@ square_matrix square_matrix::power(int n){
                 res.mt[i][j] = (i==j?1:0);
             }
         }
-        return res;
     }
     for(int i = 1; i < n; i++){
-        res = (*this) * res;
+        *this = (*this) * res;
     }
-    return res;
 }
